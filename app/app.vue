@@ -1,26 +1,22 @@
 <template>
   <div class="page-container">
     <NuxtRouteAnnouncer />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <!-- Header -->
     <header class="header">
       <div class="header-content">
         <div class="logo">
-          <span class="logo-icon">💧</span>
-          <span class="logo-text">charity: water</span>
+          <img src="/mama-informada-logo.png" alt="Mama Informada" class="logo-image" />
         </div>
         
         <nav class="nav-menu">
-          <button class="nav-item">TAKE ACTION ▾</button>
-          <button class="nav-item">ABOUT US ▾</button>
-          <a href="#" class="nav-item">WHY WATER?</a>
+          <button class="nav-item">BLOG</button>
+          <button class="nav-item">RESOURCES</button>
+          <a href="#" class="nav-item">ABOUT</a>
         </nav>
-        
-        <div class="header-actions">
-          <button class="btn-secondary">GIVE</button>
-          <button class="btn-primary">JOIN THE SPRING</button>
-          <button class="btn-text">SIGN IN</button>
-        </div>
       </div>
     </header>
     
@@ -29,39 +25,33 @@
       <div class="hero-content">
         <div class="hero-text">
           <h1 class="hero-title">
-            Education<br>
-            grows where<br>
-            water flows
+            Empoderando la maternidad informada
           </h1>
           
           <p class="hero-description">
-            Give the gift of clean water and you'll provide a basic human right, one 
-            that is still out of reach for nearly 1 in 10 people on the planet. Without 
-            clean water, cycles of poverty, illness, and limited opportunities persist. But 
-            with it? Communities — and all the people within them — begin to thrive.
+            Acompañamos a las madres en cada etapa del viaje maternal con recursos 
+            educativos confiables y actualizados. Desde el embarazo hasta la adolescencia, 
+            brindamos información esencial sobre salud materna, desarrollo infantil y 
+            bienestar familiar.
           </p>
           
           <p class="hero-highlight">
-            <strong>This holiday season, you can help 200 communities gain access to the 
-            clean water they deserve.</strong> Give $40 to bring clean water to one person, 
-            or $240 to provide clean water for a family. No matter how much you give, 
-            100% will fund community-owned water projects around the world.
+            <strong>Porque cada madre merece acceso a información de calidad.</strong> 
+            Nuestros recursos educativos te ayudan a tomar decisiones informadas sobre 
+            tu salud, la salud de tu bebé, y el desarrollo de tus hijos durante todas 
+            las etapas de crecimiento.
           </p>
           
-          <div class="donation-form">
-            <div class="toggle-buttons">
-              <button class="toggle-btn active">GIVE ONCE</button>
-              <button class="toggle-btn">MONTHLY</button>
-            </div>
-            
-            <div class="amount-input">
-              <input type="text" placeholder="Enter an amount to give" />
-            </div>
+          <div class="cta-section">
+            <p class="cta-text">¿Tienes preguntas sobre tu embarazo o el desarrollo de tu bebé?</p>
+            <a href="mailto:mamainformadaa+contact@gmail.com" class="cta-button">
+              Contactar para Consulta
+            </a>
           </div>
         </div>
         
         <div class="hero-image">
-          <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200" alt="Smiling student" />
+          <img src="/actividad.jpg" alt="Actividad" />
         </div>
       </div>
     </section>
@@ -76,8 +66,8 @@
 }
 
 .page-container {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  color: #333;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: rgb(135, 168, 149);
   min-height: 100vh;
 }
 
@@ -85,32 +75,25 @@
 .header {
   background: white;
   border-bottom: 1px solid #e5e5e5;
-  padding: 1rem 2rem;
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .header-content {
+  max-height: 128px;
   max-width: 1400px;
-  margin: 0 auto;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
 }
 
 .logo {
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.1rem;
-  font-weight: 400;
-  color: #1a1a1a;
+  padding-left: 5rem;
 }
 
-.logo-icon {
-  font-size: 1.3rem;
+.logo-image {
+  height: 96px;
+  margin: 2px;
 }
 
 .nav-menu {
@@ -118,7 +101,7 @@
   align-items: center;
   gap: 2rem;
   flex: 1;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .nav-item {
@@ -134,7 +117,7 @@
 }
 
 .nav-item:hover {
-  color: #666;
+  color: rgb(135,168,149);
 }
 
 .header-actions {
@@ -200,7 +183,7 @@
 }
 
 .hero-text {
-  background: linear-gradient(135deg, #2d5f50 0%, #1e4238 100%);
+  background: linear-gradient(360deg, rgb(135,168,149) 0%, #1e4238 100%);
   color: white;
   padding: 4rem 5rem;
   display: flex;
@@ -235,63 +218,38 @@
   font-weight: 700;
 }
 
-/* Donation Form */
-.donation-form {
+/* CTA Section */
+.cta-section {
   max-width: 450px;
 }
 
-.toggle-buttons {
-  display: flex;
+.cta-text {
+  font-size: 1.125rem;
   margin-bottom: 1.5rem;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  font-weight: 400;
+  line-height: 1.6;
 }
 
-.toggle-btn {
-  flex: 1;
-  padding: 1rem;
-  font-size: 0.875rem;
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.5px;
-  cursor: pointer;
-  border: none;
-  background: white;
   color: #1a1a1a;
-  transition: all 0.2s;
-}
-
-.toggle-btn:first-child {
-  border-right: 1px solid #e5e5e5;
-}
-
-.toggle-btn.active {
   background: #ffd23f;
-  color: #1a1a1a;
-}
-
-.toggle-btn:not(.active):hover {
-  background: #f5f5f5;
-}
-
-.amount-input {
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
-  padding: 0.25rem;
-}
-
-.amount-input input {
-  width: 100%;
-  padding: 1.25rem 1.5rem;
-  font-size: 1rem;
   border: none;
-  background: transparent;
-  color: white;
-  outline: none;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.amount-input input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+.cta-button:hover {
+  background: #ffc107;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Hero Image */
@@ -314,6 +272,10 @@
     grid-template-columns: 1fr;
   }
   
+  .logo {
+    padding-left: 2rem;
+  }
+  
   .hero-text {
     padding: 3rem 2rem;
   }
@@ -330,7 +292,10 @@
 @media (max-width: 768px) {
   .header-content {
     flex-wrap: wrap;
-    padding: 1rem;
+  }
+  
+  .logo {
+    padding-left: 2rem;
   }
   
   .nav-menu {
@@ -338,6 +303,7 @@
     width: 100%;
     justify-content: flex-start;
     gap: 1rem;
+    padding-left: 2rem;
   }
   
   .hero-title {

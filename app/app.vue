@@ -1,4 +1,14 @@
 <script setup>
+const isMenuOpen = ref(false)
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+}
+
+const closeMenu = () => {
+  isMenuOpen.value = false
+}
+
 useHead({
   link: [
     {
@@ -19,16 +29,31 @@ useHead({
     <!-- Header -->
     <header class="header">
       <div class="header-content">
-        <NuxtLink to="/" class="logo">
+        <NuxtLink to="/" class="logo" @click="closeMenu">
           <img src="/mama-informada-logo.png" alt="Mama Informada" class="logo-image" />
         </NuxtLink>
         
-        <nav class="nav-menu">
+        <!-- Desktop Navigation -->
+        <nav class="nav-menu desktop-nav">
           <NuxtLink to="/blog" class="nav-item">BLOG</NuxtLink>
           <NuxtLink to="/recursos" class="nav-item">RECURSOS</NuxtLink>
           <NuxtLink to="/acerca" class="nav-item">ACERCA</NuxtLink>
         </nav>
+        
+        <!-- Hamburger Button -->
+        <button class="hamburger" @click="toggleMenu" :class="{ active: isMenuOpen }" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
+      
+      <!-- Mobile Navigation -->
+      <nav class="mobile-nav" :class="{ open: isMenuOpen }">
+        <NuxtLink to="/blog" class="mobile-nav-item" @click="closeMenu">BLOG</NuxtLink>
+        <NuxtLink to="/recursos" class="mobile-nav-item" @click="closeMenu">RECURSOS</NuxtLink>
+        <NuxtLink to="/acerca" class="mobile-nav-item" @click="closeMenu">ACERCA</NuxtLink>
+      </nav>
     </header>
     
     <!-- Page Content -->
@@ -80,6 +105,7 @@ useHead({
   gap: 2rem;
   flex: 1;
   justify-content: flex-end;
+  padding-right: 2rem;
 }
 
 .nav-item {
@@ -95,6 +121,79 @@ useHead({
 }
 
 .nav-item:hover {
+  color: rgb(135,168,149);
+}
+
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 101;
+  margin-right: 2rem;
+}
+
+.hamburger span {
+  width: 30px;
+  height: 3px;
+  background: #1a1a1a;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+  display: none;
+  flex-direction: column;
+  background: white;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  padding: 1rem 0;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-nav.open {
+  max-height: 300px;
+}
+
+.mobile-nav-item {
+  padding: 1rem 2rem;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+}
+
+.mobile-nav-item:hover {
+  background: #f5f5f5;
+  border-left-color: rgb(135,168,149);
   color: rgb(135,168,149);
 }
 
@@ -152,21 +251,36 @@ useHead({
   }
 }
 
-@media (max-width: 768px) {
-  .header-content {
-    flex-wrap: wrap;
-  }
-  
+@media (max-width: 605px) {
   .logo {
-    padding-left: 2rem;
+    padding-left: 1rem;
   }
   
-  .nav-menu {
-    order: 3;
-    width: 100%;
-    justify-content: flex-start;
-    gap: 1rem;
-    padding-left: 2rem;
+  .logo-image {
+    height: 70px;
+  }
+  
+  .header-content {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  /* Hide desktop nav, show hamburger */
+  .desktop-nav {
+    display: none;
+  }
+  
+  .hamburger {
+    display: flex;
+  }
+  
+  .hamburger {
+    margin-right: 1rem;
+  }
+  
+  /* Show mobile nav */
+  .mobile-nav {
+    display: flex;
   }
 }
 </style>

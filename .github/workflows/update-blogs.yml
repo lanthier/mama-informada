@@ -60,6 +60,15 @@ jobs:
       - name: Build site
         run: npm run generate
       
+      - name: Debug - Check build output
+        run: |
+          echo "=== Checking if .output/public exists ==="
+          ls -la .output/
+          echo "=== Contents of .output/public ==="
+          ls -la .output/public/
+          echo "=== First few files ==="
+          find .output/public -type f | head -20
+      
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

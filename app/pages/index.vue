@@ -1,4 +1,21 @@
 <script setup>
+// SEO metadata for home page
+const siteUrl = 'https://lanthier.github.io'
+const baseURL = '/mama-informada'
+
+useSeoMeta({
+  title: 'Mama Informada - Empoderando la maternidad informada',
+  description: 'Acompañamos a las madres en cada etapa del viaje maternal con recursos educativos confiables y actualizados. Desde el embarazo hasta la adolescencia, información esencial sobre salud materna, desarrollo infantil y bienestar familiar.',
+  ogTitle: 'Mama Informada - Empoderando la maternidad informada',
+  ogDescription: 'Acompañamos a las madres en cada etapa del viaje maternal con recursos educativos confiables y actualizados.',
+  ogImage: `${siteUrl}${baseURL}/mama-informada-logo.png`,
+  ogUrl: `${siteUrl}${baseURL}`,
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Mama Informada - Empoderando la maternidad informada',
+  twitterDescription: 'Acompañamos a las madres en cada etapa del viaje maternal con recursos educativos confiables y actualizados.',
+  twitterImage: `${siteUrl}${baseURL}/mama-informada-logo.png`,
+})
 </script>
 
 <template>

@@ -15,7 +15,8 @@ if (blog) {
     image: blog.image,
     date: blog.date,
     category: blog.category,
-    content: blog.content
+    content: blog.content,
+    description: blog.description || blog.title
   }
 }
 
@@ -23,6 +24,7 @@ if (blog) {
 const fallbackBlogPosts = {
   'nutricion-durante-el-embarazo': {
     title: 'Nutrición Durante el Embarazo',
+    description: 'La nutrición durante el embarazo es fundamental para el desarrollo saludable de tu bebé y tu propio bienestar.',
     image: '/actividad.jpg',
     date: '12 de Octubre, 2025',
     category: 'Embarazo',
@@ -177,6 +179,7 @@ const fallbackBlogPosts = {
 // Use loaded blog if available, otherwise try fallback, otherwise show not found
 const post = blogPosts[slug] || fallbackBlogPosts[slug] || {
   title: 'Blog no encontrado',
+  description: 'Lo sentimos, este artículo no existe.',
   content: '<p>Lo sentimos, este artículo no existe.</p>',
   image: '/actividad.jpg'
 }
@@ -184,6 +187,56 @@ const post = blogPosts[slug] || fallbackBlogPosts[slug] || {
 console.log('Slug:', slug)
 console.log('Blog found:', !!blogPosts[slug])
 console.log('Post:', post)
+
+// Get the site URL from config
+const config = useRuntimeConfig()
+const siteUrl = 'https://lanthier.github.io'
+const baseURL = '/mama-informada'
+const currentUrl = `${siteUrl}${baseURL}/blog/${slug}`
+
+// Ensure image URL is absolute for social sharing
+const absoluteImageUrl = post.image.startsWith('http') 
+  ? post.image 
+  : `${siteUrl}${baseURL}${post.image}`
+
+// Set SEO meta tags
+useSeoMeta({
+  title: post.title,
+  description: post.description || post.title,
+  ogTitle: post.title,
+  ogDescription: post.description || post.title,
+  ogImage: absoluteImageUrl,
+  ogUrl: currentUrl,
+  ogType: 'article',
+  twitterCard: 'summary_large_image',
+  twitterTitle: post.title,
+  twitterDescription: post.description || post.title,
+  twitterImage: absoluteImageUrl,
+})
+
+// Additional article metadata
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: currentUrl
+    }
+  ],
+  meta: [
+    {
+      property: 'article:published_time',
+      content: post.rawDate || new Date().toISOString()
+    },
+    {
+      property: 'article:author',
+      content: 'Mama Informada'
+    },
+    {
+      property: 'article:section',
+      content: post.category || 'Blog'
+    }
+  ]
+})
 </script>
 
 <template>

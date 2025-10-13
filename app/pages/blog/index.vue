@@ -3,6 +3,24 @@ import blogsData from '../../../data/blogs.json'
 
 // Use the imported blogs data
 const blogs = ref(blogsData)
+
+// SEO metadata for blog list page
+const siteUrl = 'https://lanthier.github.io'
+const baseURL = '/mama-informada'
+
+useSeoMeta({
+  title: 'Blog - Mama Informada',
+  description: 'Recursos e información para tu viaje maternal. Encuentra artículos sobre embarazo, salud materna, desarrollo infantil y bienestar familiar.',
+  ogTitle: 'Blog - Mama Informada',
+  ogDescription: 'Recursos e información para tu viaje maternal. Encuentra artículos sobre embarazo, salud materna, desarrollo infantil y bienestar familiar.',
+  ogImage: `${siteUrl}${baseURL}/mama-informada-logo.png`,
+  ogUrl: `${siteUrl}${baseURL}/blog`,
+  ogType: 'website',
+  twitterCard: 'summary_large_image',
+  twitterTitle: 'Blog - Mama Informada',
+  twitterDescription: 'Recursos e información para tu viaje maternal. Encuentra artículos sobre embarazo, salud materna, desarrollo infantil y bienestar familiar.',
+  twitterImage: `${siteUrl}${baseURL}/mama-informada-logo.png`,
+})
 </script>
 
 <template>

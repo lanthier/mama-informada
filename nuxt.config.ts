@@ -4,7 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   
   app: {
-    baseURL: '/mama-informada/',
+    baseURL: '/',
     buildAssetsDir: 'assets'
   }
 })

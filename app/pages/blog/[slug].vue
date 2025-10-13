@@ -263,8 +263,21 @@ useHead({
         
         <div class="blog-footer">
           <NuxtLink to="/blog" class="back-button">
-            ← Volver al Blog
+            ← Volver a todos
           </NuxtLink>
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA Footer -->
+    <section class="blog-cta-footer">
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="cta-title">¿Tienes preguntas sobre tu embarazo o el desarrollo de tu bebé?</h2>
+          <p class="cta-description">Contáctanos para obtener información personalizada y recursos educativos.</p>
+          <a href="mailto:mamainformadaa+contact@gmail.com" class="cta-button">
+            Contactar para Consulta
+          </a>
         </div>
       </div>
     </section>
@@ -411,6 +424,53 @@ useHead({
   transform: translateY(-2px);
 }
 
+/* CTA Footer Section */
+.blog-cta-footer {
+  background: linear-gradient(135deg, rgb(135,168,149) 0%, #1e4238 100%);
+  padding: 4rem 0;
+  margin-top: 4rem;
+}
+
+.cta-content {
+  text-align: center;
+  color: white;
+}
+
+.cta-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.cta-description {
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: white;
+  color: rgb(135,168,149);
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  background: #f8f8f8;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .blog-hero {
@@ -436,6 +496,23 @@ useHead({
   .content :deep(h2) {
     font-size: 1.5rem;
     margin-top: 2rem;
+  }
+  
+  .blog-cta-footer {
+    padding: 3rem 0;
+  }
+  
+  .cta-title {
+    font-size: 1.5rem;
+  }
+  
+  .cta-description {
+    font-size: 1rem;
+  }
+  
+  .cta-button {
+    font-size: 1rem;
+    padding: 0.875rem 2rem;
   }
 }
 </style>

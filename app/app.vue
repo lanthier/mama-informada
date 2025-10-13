@@ -16,8 +16,8 @@
         
         <nav class="nav-menu">
           <NuxtLink to="/blog" class="nav-item">BLOG</NuxtLink>
-          <NuxtLink to="/resources" class="nav-item">RESOURCES</NuxtLink>
-          <NuxtLink to="/about" class="nav-item">ABOUT</NuxtLink>
+          <NuxtLink to="/recursos" class="nav-item">RECURSOS</NuxtLink>
+          <NuxtLink to="/acerca" class="nav-item">ACERCA</NuxtLink>
         </nav>
       </div>
     </header>

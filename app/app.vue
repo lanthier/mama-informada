@@ -16,6 +16,16 @@ useHead({
       type: 'image/png',
       href: '/favicon.png'
     }
+  ],
+  script: [
+    {
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-YC32B2XZS2',
+      async: true
+    },
+    {
+      innerHTML: "window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-YC32B2XZS2');",
+      type: 'text/javascript'
+    }
   ]
 })
 </script>

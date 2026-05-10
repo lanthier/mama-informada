@@ -1,3 +1,4 @@
+
 <script setup>
 import blogsData from '../../../data/blogs.json'
 
@@ -16,177 +17,72 @@ if (blog) {
     date: blog.date,
     category: blog.category,
     content: blog.content,
+    tableOfContents: blog.tableOfContents || [],
     description: blog.description || blog.title
   }
 }
 
-// Fallback sample data if blogs.json doesn't exist yet
-const fallbackBlogPosts = {
-  'nutricion-durante-el-embarazo': {
-    title: 'Nutrición Durante el Embarazo',
-    description: 'La nutrición durante el embarazo es fundamental para el desarrollo saludable de tu bebé y tu propio bienestar.',
-    image: '/actividad.jpg',
-    date: '12 de Octubre, 2025',
-    category: 'Embarazo',
-    content: `
-      <p>La nutrición durante el embarazo es fundamental para el desarrollo saludable de tu bebé y tu propio bienestar. Durante estos nueve meses, tu cuerpo necesita nutrientes adicionales para apoyar el crecimiento del bebé.</p>
-      
-      <h2>Nutrientes Esenciales</h2>
-      <p>Durante el embarazo, ciertos nutrientes son especialmente importantes:</p>
-      <ul>
-        <li><strong>Ácido Fólico:</strong> Crucial para prevenir defectos del tubo neural</li>
-        <li><strong>Hierro:</strong> Necesario para producir sangre adicional</li>
-        <li><strong>Calcio:</strong> Importante para el desarrollo de huesos y dientes</li>
-        <li><strong>Proteína:</strong> Esencial para el crecimiento del bebé</li>
-        <li><strong>DHA:</strong> Importante para el desarrollo cerebral</li>
-      </ul>
-      
-      <h2>Alimentos Recomendados</h2>
-      <p>Una dieta balanceada durante el embarazo debe incluir una variedad de alimentos nutritivos como frutas, verduras, granos integrales, proteínas magras y productos lácteos.</p>
-      
-      <h2>Qué Evitar</h2>
-      <p>Algunos alimentos deben evitarse durante el embarazo, incluyendo pescado con alto contenido de mercurio, carnes crudas o poco cocidas, y ciertos quesos blandos.</p>
-    `
-  },
-  'primeros-pasos-del-bebe': {
-    title: 'Primeros Pasos del Bebé',
-    image: '/actividad.jpg',
-    date: '10 de Octubre, 2025',
-    category: 'Desarrollo',
-    content: `
-      <p>Los primeros pasos de tu bebé son un hito emocionante en su desarrollo. Cada bebé se desarrolla a su propio ritmo, pero hay maneras en que puedes apoyar su progreso.</p>
-      
-      <h2>Hitos del Desarrollo Motor</h2>
-      <p>Los bebés generalmente siguen esta secuencia de desarrollo:</p>
-      <ul>
-        <li>2-3 meses: Control de la cabeza</li>
-        <li>4-6 meses: Rodar y sentarse con apoyo</li>
-        <li>6-9 meses: Gatear y sentarse sin apoyo</li>
-        <li>9-12 meses: Pararse con apoyo</li>
-        <li>12-15 meses: Primeros pasos independientes</li>
-      </ul>
-      
-      <h2>Cómo Apoyar el Desarrollo</h2>
-      <p>Proporciona un ambiente seguro para la exploración, tiempo en el piso para practicar movimientos, y mucho ánimo y apoyo emocional.</p>
-    `
-  },
-  'cuidado-postnatal': {
-    title: 'Cuidado Postnatal',
-    image: '/actividad.jpg',
-    date: '8 de Octubre, 2025',
-    category: 'Salud',
-    content: `
-      <p>El período postnatal es un tiempo de grandes cambios físicos y emocionales. Es importante cuidar tanto tu salud física como mental durante esta etapa.</p>
-      
-      <h2>Recuperación Física</h2>
-      <p>Tu cuerpo necesita tiempo para recuperarse del parto. Es normal experimentar:</p>
-      <ul>
-        <li>Sangrado vaginal (loquios) durante varias semanas</li>
-        <li>Contracciones uterinas mientras el útero vuelve a su tamaño normal</li>
-        <li>Dolor en el área perineal si tuviste un parto vaginal</li>
-        <li>Cambios hormonales que pueden afectar tu estado de ánimo</li>
-      </ul>
-      
-      <h2>Salud Mental</h2>
-      <p>Muchas madres experimentan el "baby blues" o incluso depresión posparto. No dudes en buscar apoyo profesional si lo necesitas.</p>
-      
-      <h2>Cuidado Personal</h2>
-      <p>Descansa cuando el bebé duerme, come alimentos nutritivos, mantente hidratada y acepta ayuda de familiares y amigos.</p>
-    `
-  },
-  'comunicacion-con-adolescentes': {
-    title: 'Comunicación con Adolescentes',
-    image: '/actividad.jpg',
-    date: '5 de Octubre, 2025',
-    category: 'Adolescencia',
-    content: `
-      <p>La adolescencia es una etapa desafiante tanto para los padres como para los hijos. Mantener líneas abiertas de comunicación es fundamental.</p>
-      
-      <h2>Estrategias de Comunicación Efectiva</h2>
-      <ul>
-        <li><strong>Escucha Activa:</strong> Presta atención completa sin interrumpir</li>
-        <li><strong>Empatía:</strong> Intenta entender su perspectiva</li>
-        <li><strong>Respeto:</strong> Trata sus preocupaciones con seriedad</li>
-        <li><strong>Paciencia:</strong> Elige el momento adecuado para conversaciones importantes</li>
-      </ul>
-      
-      <h2>Construyendo Confianza</h2>
-      <p>La confianza se construye siendo consistente, cumpliendo promesas y respetando su privacidad dentro de límites razonables.</p>
-      
-      <h2>Manejo de Conflictos</h2>
-      <p>Los conflictos son normales. Aprende a manejarlos de manera constructiva, estableciendo límites claros mientras mantienes el respeto mutuo.</p>
-    `
-  },
-  'preparacion-para-el-parto': {
-    title: 'Preparación para el Parto',
-    image: '/actividad.jpg',
-    date: '3 de Octubre, 2025',
-    category: 'Embarazo',
-    content: `
-      <p>Prepararte para el parto puede ayudarte a sentirte más confiada y en control durante este momento importante.</p>
-      
-      <h2>Preparación Física</h2>
-      <p>Los ejercicios de Kegel, caminatas suaves y estiramientos pueden ayudar a preparar tu cuerpo para el trabajo de parto.</p>
-      
-      <h2>Técnicas de Respiración</h2>
-      <p>Practicar técnicas de respiración puede ayudarte a manejar el dolor y mantener la calma durante las contracciones:</p>
-      <ul>
-        <li>Respiración profunda y lenta</li>
-        <li>Respiración rítmica</li>
-        <li>Visualización y relajación</li>
-      </ul>
-      
-      <h2>Plan de Parto</h2>
-      <p>Considera crear un plan de parto que incluya tus preferencias para el manejo del dolor, personas de apoyo presentes, y otros detalles importantes.</p>
-      
-      <h2>Qué Esperar</h2>
-      <p>El trabajo de parto tiene diferentes etapas. Familiarízate con las señales de parto y cuándo es momento de ir al hospital.</p>
-    `
-  },
-  'lactancia-materna': {
-    title: 'Lactancia Materna',
-    image: '/actividad.jpg',
-    date: '1 de Octubre, 2025',
-    category: 'Desarrollo',
-    content: `
-      <p>La lactancia materna proporciona la nutrición ideal para los bebés y ofrece numerosos beneficios tanto para la madre como para el hijo.</p>
-      
-      <h2>Beneficios de la Lactancia</h2>
-      <ul>
-        <li>Proporciona nutrición perfectamente equilibrada</li>
-        <li>Protege contra infecciones y enfermedades</li>
-        <li>Ayuda a crear un vínculo emocional fuerte</li>
-        <li>Ayuda a la madre a recuperarse del parto</li>
-      </ul>
-      
-      <h2>Técnicas de Amamantamiento</h2>
-      <p>Un buen agarre es fundamental para una lactancia exitosa. El bebé debe tomar no solo el pezón sino también gran parte de la areola.</p>
-      
-      <h2>Problemas Comunes y Soluciones</h2>
-      <p>Es normal enfrentar desafíos al inicio:</p>
-      <ul>
-        <li><strong>Dolor en los pezones:</strong> Verifica el agarre del bebé</li>
-        <li><strong>Congestión mamaria:</strong> Amamanta con frecuencia</li>
-        <li><strong>Preocupación por la producción:</strong> La mayoría de las madres producen suficiente leche</li>
-      </ul>
-      
-      <h2>Cuándo Buscar Ayuda</h2>
-      <p>No dudes en consultar con un especialista en lactancia si tienes dificultades persistentes.</p>
-    `
-  }
-}
-
-// Use loaded blog if available, otherwise try fallback, otherwise show not found
-const post = blogPosts[slug] || fallbackBlogPosts[slug] || {
+// Use loaded blog if available, otherwise show not found
+const post = blogPosts[slug] || {
   title: 'Blog no encontrado',
   description: 'Lo sentimos, este artículo no existe.',
   content: '<p>Lo sentimos, este artículo no existe.</p>',
   image: '/actividad.jpg'
 }
 
-console.log('Slug:', slug)
-console.log('Blog found:', !!blogPosts[slug])
-console.log('Post:', post)
+function createAnchorId(text) {
+  return String(text || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+}
+
+function buildContentWithToc(content) {
+  if (!content) {
+    return {
+      contentWithAnchors: '',
+      tableOfContents: [],
+    }
+  }
+
+  const slugCounts = new Map()
+  const tableOfContents = []
+
+  const contentWithAnchors = content.replace(/<h([1-3])([^>]*)>([\s\S]*?)<\/h\1>/gi, (match, level, attrs = '', innerHtml = '') => {
+    const title = innerHtml.replace(/<[^>]*>/g, '').trim()
+    if (!title) return match
+
+    const originalLevel = Number(level)
+    const headingLevel = originalLevel === 1 ? 2 : originalLevel
+    const existingIdMatch = attrs.match(/\sid\s*=\s*["']([^"']+)["']/i)
+    let headingId = existingIdMatch?.[1]
+
+    if (!headingId) {
+      const baseId = createAnchorId(title) || 'section'
+      const count = slugCounts.get(baseId) || 0
+      slugCounts.set(baseId, count + 1)
+      headingId = count === 0 ? baseId : `${baseId}-${count + 1}`
+    }
+
+    tableOfContents.push({ id: headingId, title, level: originalLevel })
+
+    const attrsWithoutId = attrs.replace(/\sid\s*=\s*["'][^"']+["']/i, '')
+    return `<h${headingLevel} id="${headingId}"${attrsWithoutId}>${innerHtml}</h${headingLevel}>`
+  })
+
+  return {
+    contentWithAnchors,
+    tableOfContents,
+  }
+}
+
+const { contentWithAnchors, tableOfContents } = buildContentWithToc(post.content)
+post.content = contentWithAnchors
+post.tableOfContents = tableOfContents
 
 // Get the site URL from config
 const config = useRuntimeConfig()
@@ -259,6 +155,19 @@ useHead({
     <!-- Blog Content -->
     <section class="blog-content">
       <div class="container">
+        <nav v-if="post.tableOfContents && post.tableOfContents.length > 0" class="toc" aria-label="Indice del articulo">
+          <h2 class="toc-title">Indice de contenidos</h2>
+          <ul class="toc-list">
+            <li
+              v-for="item in post.tableOfContents"
+              :key="item.id"
+              :class="['toc-item', { 'is-h2': item.level === 2, 'is-h3': item.level === 3 }]"
+            >
+              <a :href="`#${item.id}`">{{ item.title }}</a>
+            </li>
+          </ul>
+        </nav>
+
         <div class="content" v-html="post.content"></div>
         
         <div class="blog-footer">
@@ -334,7 +243,6 @@ useHead({
   max-width: 800px;
   margin: 0 auto;
   padding: 0 2rem;
-  width: 100%;
 }
 
 .blog-category {
@@ -376,6 +284,75 @@ useHead({
   font-size: 1.125rem;
 }
 
+.toc {
+  margin-bottom: 2rem;
+  padding: 1.25rem;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.toc-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.toc-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.toc-item {
+  position: relative;
+  padding-left: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.toc-item::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  color: #1e4238;
+}
+
+.toc-item.is-h2 {
+  padding-left: 2rem;
+}
+
+.toc-item.is-h2::before {
+  left: 1rem;
+  opacity: 0.85;
+}
+
+.toc-item.is-h3 {
+  padding-left: 3rem;
+}
+
+.toc-item.is-h3::before {
+  left: 2rem;
+  opacity: 0.7;
+}
+
+.toc-item a {
+  color: #1e4238;
+  text-decoration: none;
+}
+
+.toc-item.is-h2 a {
+  font-size: 0.95rem;
+}
+
+.toc-item.is-h3 a {
+  font-size: 0.9rem;
+}
+
+.toc-item a:hover {
+  text-decoration: underline;
+}
+
 .content :deep(p) {
   margin-bottom: 1.5rem;
 }
@@ -386,6 +363,12 @@ useHead({
   margin-top: 3rem;
   margin-bottom: 1.5rem;
   color: #1a1a1a;
+}
+
+.content :deep(h1),
+.content :deep(h2),
+.content :deep(h3) {
+  scroll-margin-top: 110px;
 }
 
 .content :deep(ul) {
@@ -516,4 +499,3 @@ useHead({
   }
 }
 </style>
-

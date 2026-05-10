@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename)
 
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE_ID,
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN
+  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 })
 
 // Helper function to convert rich text to HTML
@@ -147,13 +147,55 @@ function createSlug(title) {
     .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
 }
 
+function stripHtml(html) {
+  return html.replace(/<[^>]*>/g, '').trim()
+}
+
+function addHeadingIdsAndGenerateToc(html) {
+  if (!html) {
+    return {
+      content: '',
+      tableOfContents: [],
+    }
+  }
+
+  const slugCounts = new Map()
+  const tableOfContents = []
+
+  const content = html.replace(/<h([12])([^>]*)>([\s\S]*?)<\/h\1>/gi, (match, level, attrs = '', innerHtml = '') => {
+    const title = stripHtml(innerHtml)
+    if (!title) return match
+
+    const baseId = createSlug(title) || 'section'
+    const count = slugCounts.get(baseId) || 0
+    slugCounts.set(baseId, count + 1)
+    const headingId = count === 0 ? baseId : `${baseId}-${count + 1}`
+
+    tableOfContents.push({
+      id: headingId,
+      title,
+      level: Number(level),
+    })
+
+    if (/\sid\s*=/.test(attrs)) {
+      return `<h${level}${attrs}>${innerHtml}</h${level}>`
+    }
+
+    return `<h${level} id="${headingId}"${attrs}>${innerHtml}</h${level}>`
+  })
+
+  return {
+    content,
+    tableOfContents,
+  }
+}
+
 async function fetchBlogs() {
   try {
     console.log('Fetching blogs from Contentful...')
     
     const response = await client.getEntries({
       content_type: 'blog',
-      // locale: 'es' // Spanish locale
     })
     
     console.log(`Found ${response.items.length} blog posts`)
@@ -181,7 +223,8 @@ async function fetchBlogs() {
       }
       
       // Convert rich text to HTML
-      const content = richTextToHtml(fields.contenidoDelBlog)
+      const richContent = richTextToHtml(fields.contenidoDelBlog)
+      const { content, tableOfContents } = addHeadingIdsAndGenerateToc(richContent)
       
       return {
         id: item.sys.id,
@@ -192,6 +235,7 @@ async function fetchBlogs() {
         date: formattedDate,
         rawDate: fields.fecha || '',
         content,
+        tableOfContents,
         category: 'Blog', // You can extract this from tags if needed
         createdAt: item.sys.createdAt,
         updatedAt: item.sys.updatedAt
@@ -231,4 +275,6 @@ async function fetchBlogs() {
 
 // Run the script
 fetchBlogs()
+
+
 

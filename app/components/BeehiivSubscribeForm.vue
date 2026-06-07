@@ -23,13 +23,22 @@ onMounted(() => {
 </script>
 
 <template>
-  <div ref="containerRef" class="beehiiv-form" />
+  <div class="beehiiv-form-wrapper">
+    <div ref="containerRef" class="beehiiv-form" />
+  </div>
 </template>
 
 <style scoped>
-.beehiiv-form {
+.beehiiv-form-wrapper {
   margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.beehiiv-form {
   min-height: 120px;
   width: 100%;
+  max-width: 560px;
 }
 </style>

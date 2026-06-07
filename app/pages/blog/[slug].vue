@@ -169,6 +169,8 @@ useHead({
         </nav>
 
         <div class="content" v-html="post.content"></div>
+
+        <BeehiivSubscribeForm />
         
         <div class="blog-footer">
           <NuxtLink to="/blog" class="back-button">

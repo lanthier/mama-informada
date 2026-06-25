@@ -1,0 +1,20 @@
+[
+  {
+    "id": "plan-de-parto",
+    "slug": "plan-de-parto",
+    "title": "Plan de Parto",
+    "description": "Completa un formulario con tus preferencias y descarga un PDF personalizado para compartir con tu equipo médico.",
+    "icon": "📋",
+    "type": "Herramienta",
+    "gratis": true
+  },
+  {
+    "id": "calculadora-semanas",
+    "slug": "calculadora-semanas",
+    "title": "Calculadora de Semanas",
+    "description": "Calcula en qué semana de embarazo te encuentras y descubre consejos para cada etapa del camino.",
+    "icon": "🗓️",
+    "type": "Herramienta",
+    "gratis": true
+  }
+]

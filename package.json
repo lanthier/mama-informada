@@ -3,12 +3,13 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
+    "build": "npm run generate-sitemap && nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
+    "generate": "npm run generate-sitemap && nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "fetch-blogs": "node scripts/fetch-blogs.js"
+    "fetch-blogs": "node scripts/fetch-blogs.js",
+    "generate-sitemap": "node scripts/generate-sitemap.js"
   },
   "dependencies": {
     "dotenv": "^16.4.7",

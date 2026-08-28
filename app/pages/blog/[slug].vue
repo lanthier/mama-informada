@@ -84,16 +84,13 @@ const { contentWithAnchors, tableOfContents } = buildContentWithToc(post.content
 post.content = contentWithAnchors
 post.tableOfContents = tableOfContents
 
-// Get the site URL from config
-const config = useRuntimeConfig()
-const siteUrl = 'https://lanthier.github.io'
-const baseURL = '/mama-informada'
-const currentUrl = `${siteUrl}${baseURL}/blog/${slug}`
+const siteUrl = 'https://mamainformada.org'
+const currentUrl = `${siteUrl}/blog/${slug}`
 
 // Ensure image URL is absolute for social sharing
 const absoluteImageUrl = post.image.startsWith('http') 
   ? post.image 
-  : `${siteUrl}${baseURL}${post.image}`
+  : `${siteUrl}${post.image}`
 
 // Set SEO meta tags
 useSeoMeta({

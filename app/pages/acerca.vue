@@ -1,7 +1,110 @@
 <script setup>
+const siteUrl = 'https://mamainformada.org'
+const pageUrl = `${siteUrl}/acerca`
+const ogImage = `${siteUrl}/Daniella-casual.JPG`
+
+const title = 'Acerca de Mama Informada | Matrona y educación en salud de la mujer'
+const description =
+  'Conoce a Daniella, matrona de la Universidad de Chile, y la misión de Mama Informada: información con evidencia científica para que tomes decisiones con autonomía y confianza.'
+
 useSeoMeta({
-  title: 'Acerca de - Mama Informada',
-  description: 'Conoce nuestra misión, equipo e historia. Empoderamos a las mujeres en cada etapa de su vida a través de información basada en evidencia científica.',
+  title,
+  description,
+  ogTitle: title,
+  ogDescription: description,
+  ogImage,
+  ogUrl: pageUrl,
+  ogType: 'website',
+  ogLocale: 'es_CL',
+  twitterCard: 'summary_large_image',
+  twitterTitle: title,
+  twitterDescription: description,
+  twitterImage: ogImage,
+})
+
+useHead({
+  link: [
+    {
+      rel: 'canonical',
+      href: pageUrl,
+    },
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'AboutPage',
+            '@id': `${pageUrl}#webpage`,
+            url: pageUrl,
+            name: title,
+            description,
+            isPartOf: {
+              '@id': `${siteUrl}/#website`,
+            },
+            about: {
+              '@id': `${siteUrl}/#organization`,
+            },
+            mainEntity: {
+              '@id': `${siteUrl}/#person`,
+            },
+            inLanguage: 'es-CL',
+          },
+          {
+            '@type': 'WebSite',
+            '@id': `${siteUrl}/#website`,
+            url: siteUrl,
+            name: 'Mama Informada',
+            description:
+              'Información y herramientas basadas en evidencia científica para la salud de la mujer y la maternidad.',
+            publisher: {
+              '@id': `${siteUrl}/#organization`,
+            },
+            inLanguage: 'es-CL',
+          },
+          {
+            '@type': 'Organization',
+            '@id': `${siteUrl}/#organization`,
+            name: 'Mama Informada',
+            url: siteUrl,
+            logo: {
+              '@type': 'ImageObject',
+              url: `${siteUrl}/mama-informada-logo.png`,
+            },
+            founder: {
+              '@id': `${siteUrl}/#person`,
+            },
+          },
+          {
+            '@type': 'Person',
+            '@id': `${siteUrl}/#person`,
+            name: 'Daniella',
+            jobTitle: 'Matrona',
+            description:
+              'Matrona de la Universidad de Chile con enfoque biopsicosocial y de salud pública. Fundadora de Mama Informada.',
+            alumniOf: {
+              '@type': 'CollegeOrUniversity',
+              name: 'Universidad de Chile',
+            },
+            worksFor: {
+              '@id': `${siteUrl}/#organization`,
+            },
+            image: ogImage,
+            url: pageUrl,
+            knowsAbout: [
+              'Salud de la mujer',
+              'Maternidad',
+              'Lactancia materna',
+              'Salud pública',
+              'Educación en salud',
+            ],
+          },
+        ],
+      }),
+    },
+  ],
 })
 </script>
 
@@ -9,7 +112,7 @@ useSeoMeta({
   <div class="acerca-page">
     <section class="acerca-header">
       <div class="container">
-        <h1 class="page-title">Acerca de Nosotros</h1>
+        <h1 class="page-title">Acerca de Mama Informada</h1>
         <p class="page-subtitle">
           Información, herramientas y acompañamiento para que tomes tus propias decisiones con confianza.
         </p>
@@ -21,7 +124,14 @@ useSeoMeta({
         <article class="acerca-section">
           <div class="section-body">
             <div class="section-image">
-              <img src="/ensenando.jpg" alt="Daniella enseñando" />
+              <img
+                src="/ensenando.jpg"
+                alt="Daniella, matrona, enseñando educación en salud de la mujer"
+                width="1085"
+                height="864"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="section-content">
               <h2 class="section-title">Nuestra misión</h2>
@@ -30,6 +140,13 @@ useSeoMeta({
                 herramientas prácticas y basadas en <strong>evidencia científica</strong> para que seas la dueña de tus
                 <strong>propias decisiones</strong>, vivas sin miedos y ejerzas tu autonomía con total confianza.
               </p>
+              <p class="section-text section-cta">
+                Explora nuestros
+                <NuxtLink to="/recursos">recursos gratuitos</NuxtLink>
+                y artículos del
+                <NuxtLink to="/blog">blog</NuxtLink>
+                con información actualizada sobre embarazo, parto y maternidad.
+              </p>
             </div>
           </div>
         </article>
@@ -37,7 +154,14 @@ useSeoMeta({
         <article class="acerca-section">
           <div class="section-body section-body--reverse">
             <div class="section-image section-image--portrait">
-              <img src="/Daniella-casual.JPG" alt="Daniella, Matrona de la Universidad de Chile" />
+              <img
+                src="/Daniella-casual.JPG"
+                alt="Daniella, matrona de la Universidad de Chile y fundadora de Mama Informada"
+                width="5712"
+                height="4284"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="section-content">
               <h2 class="section-title">Nuestro equipo</h2>
@@ -48,6 +172,10 @@ useSeoMeta({
                 entorno importan. Combino la rigurosidad de la ciencia con la empatía que necesitas en
                 los momentos más vulnerables de tu vida.
               </p>
+              <p class="section-text">
+                Mis áreas de enfoque incluyen <strong>lactancia materna</strong>, salud reproductiva, acompañamiento en
+                el embarazo y el parto, y el crecimiento personal que sostiene el bienestar a largo plazo.
+              </p>
             </div>
           </div>
         </article>
@@ -56,8 +184,8 @@ useSeoMeta({
           <h2 class="section-title">Nuestra historia</h2>
           <div class="section-text">
             <p>
-              La Historia detrás de Mamainformada. <strong>Mi pasión por enseñar</strong> nació en mi primera práctica
-              clínica. Me asignaron una paciente que acababa de tener a su cuarto hijo. A pesar de su
+              La historia detrás de <strong>Mama Informada</strong> empieza con la pasión por enseñar. Esa vocación nació
+              en mi primera práctica clínica. Me asignaron una paciente que acababa de tener a su cuarto hijo. A pesar de su
               experiencia, nunca había logrado amamantar a sus hijos anteriores. Juntas, con paciencia
               y la educación correcta, <strong>logramos una lactancia materna</strong> exclusiva y <strong>efectiva</strong>. Ver su
               cara de asombro, felicidad y empoderamiento me hizo entender mi verdadero propósito: la
@@ -74,10 +202,16 @@ useSeoMeta({
               aún más con las <strong>mujeres que se atendían en él</strong> o daban a luz sin información.
             </p>
             <p>
-              Por eso nació Mamainformada. Decidí transformar esa vivencia en un motor para hablar no
+              Por eso nació Mama Informada. Decidí transformar esa vivencia en un motor para hablar no
               solo de partos y anticoncepción, sino también de crecimiento personal, hábitos y
               mentalidad. Creé este espacio porque me hubiese encantado encontrar una guía así en mis
               momentos más difíciles, y hoy <strong>quiero ser esa guía para ti.</strong>
+            </p>
+            <p class="section-cta">
+              Si quieres empezar con algo práctico, prueba nuestra
+              <NuxtLink to="/recursos/calculadora-semanas">calculadora de semanas de embarazo</NuxtLink>
+              o arma tu
+              <NuxtLink to="/recursos/plan-de-parto">plan de parto</NuxtLink>.
             </p>
           </div>
         </article>
@@ -154,6 +288,7 @@ useSeoMeta({
 
 .section-image img {
   width: 100%;
+  height: auto;
   border-radius: 12px;
   object-fit: cover;
   aspect-ratio: 4 / 3;
@@ -194,6 +329,21 @@ useSeoMeta({
 
 .section-text p:last-child {
   margin-bottom: 0;
+}
+
+.section-content .section-text + .section-text {
+  margin-top: 1.25rem;
+}
+
+.section-cta a {
+  color: #1e4238;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.section-cta a:hover {
+  color: rgb(135, 168, 149);
 }
 
 @media (max-width: 768px) {

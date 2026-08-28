@@ -10,6 +10,9 @@ const closeMenu = () => {
 }
 
 useHead({
+  htmlAttrs: {
+    lang: 'es-CL',
+  },
   link: [
     {
       rel: 'icon',

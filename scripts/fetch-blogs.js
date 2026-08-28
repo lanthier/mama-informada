@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import dotenv from 'dotenv'
+import { generateSitemap } from './generate-sitemap.js'
 
 // Load environment variables
 dotenv.config()
@@ -257,6 +258,8 @@ async function fetchBlogs() {
     fs.writeFileSync(outputPath, JSON.stringify(blogs, null, 2))
     
     console.log(`✅ Successfully wrote ${blogs.length} blogs to ${outputPath}`)
+    
+    generateSitemap(blogs)
     
     // Also log the slugs for reference
     console.log('\nBlog slugs:')

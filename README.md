@@ -102,10 +102,16 @@ The site is configured for deployment to GitHub Pages via GitHub Actions. Other 
 
 1. Go to repository **Settings → Pages**
 2. Under **Source**, select **GitHub Actions**
-3. Add Contentful secrets (see `.github/README.md`)
-4. Push to main branch - site deploys automatically!
+3. Under **Custom domain**, set `mamainformada.org` (also committed as `public/CNAME`)
+4. Add Contentful secrets (see `.github/README.md`)
+5. Push to main branch - site deploys automatically!
 
-Your site will be available at: `https://your-username.github.io/repo-name/`
+The site is served at: `https://mamainformada.org`
+
+This domain is the canonical one used by all SEO metadata (`useSeoMeta`, canonical
+links, JSON-LD) and by the sitemap generator. If it ever changes, update
+`public/CNAME`, `public/robots.txt`, the `siteUrl` constant in the pages, and the
+`SITE_URL` default in `scripts/generate-sitemap.js`.
 
 For manual deployment or other platforms, check the [Nuxt deployment documentation](https://nuxt.com/docs/getting-started/deployment).
 
@@ -124,8 +130,12 @@ mama-informada/
 │   └── blogs.json           # Blog data from Contentful (committed)
 ├── scripts/
 │   ├── fetch-blogs.js       # Script to fetch from Contentful
+│   ├── generate-sitemap.js  # Builds public/sitemap.xml from data/
 │   └── README.md            # Script documentation
 ├── public/                  # Static assets
+│   ├── CNAME                # GitHub Pages custom domain
+│   ├── robots.txt
+│   └── sitemap.xml          # Generated, do not edit by hand
 └── .github/
     └── workflows/
         └── update-blogs.yml # Automated blog updates & deployment

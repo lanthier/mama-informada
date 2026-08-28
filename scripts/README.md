@@ -27,6 +27,22 @@ This will:
 2. Convert rich text content to HTML
 3. Generate slugs from titles
 4. Save the data to `data/blogs.json`
+5. Regenerate `public/sitemap.xml` from the fetched posts
+
+## Sitemap
+
+`scripts/generate-sitemap.js` builds `public/sitemap.xml` from the static routes plus
+every slug in `data/blogs.json` and `data/recursos.json`, using each post's
+`updatedAt`/`rawDate` as `<lastmod>`.
+
+It runs automatically after `npm run fetch-blogs` and before `npm run build` /
+`npm run generate`, but can also be run on its own:
+
+```bash
+npm run generate-sitemap
+```
+
+Set `SITE_URL` to override the default `https://mamainformada.org` base URL.
 
 ## Output Format
 
